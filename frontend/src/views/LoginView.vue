@@ -10,8 +10,7 @@ const erro = ref('')
 
 const handleLogin = async () => {
   try {
-    // Tenta fazer login na API
-    const res = await axios.post('http://localhost:5000/api/auth/login', {
+    const res = await axios.post('http://localhost:5001/api/auth/login', {
       email: email.value,
       password: password.value
     })

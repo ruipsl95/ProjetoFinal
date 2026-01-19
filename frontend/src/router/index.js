@@ -5,6 +5,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import DashboardView from '../views/DashboardView.vue'
 import MinhasPropostas from '../views/MinhasPropostas.vue'
+import DocentesView from '../views/DocentesView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,9 +31,15 @@ const router = createRouter({
       name: 'propostas',
       component: MinhasPropostas,
       meta: { requiresAuth: true }
-    }
+    }, 
+    {
+  path: '/docentes',
+  name: 'docentes',
+  component: DocentesView
+}
   ]
 })
+
 
 // Proteção das rotas
 router.beforeEach((to, from, next) => {

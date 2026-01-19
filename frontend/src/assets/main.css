@@ -20,7 +20,7 @@ a {
   text-decoration: none;
 }
 
-/* --- COMPONENTES REUTILIZÁVEIS (Botões, Links) --- */
+/*  COMPONENTES REUTILIZÁVEIS (Botões, Links)  */
 .btn-primary {
   background-color: var(--primary-color);
   color: white !important;
@@ -42,7 +42,7 @@ a {
   width: 100%;
 }
 
-/* --- NAVBAR (Menu) --- */
+/*  NAVBAR (Menu)  */
 header {
   background-color: var(--bg-white);
   border-bottom: 1px solid var(--border-color);
@@ -97,7 +97,7 @@ header {
   color: var(--primary-color);
 }
 
-/* --- HERO SECTION (Página Inicial) --- */
+/*  HERO SECTION (Página Inicial)  */
 .hero-section {
   background: linear-gradient(to bottom, #eff6ff, #ffffff);
   padding: 5rem 2rem 6rem;
@@ -120,12 +120,12 @@ header {
   line-height: 1.6;
 }
 
-/* --- CARDS --- */
+/*  CARDS  */
 .cards-container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 2rem 4rem;
-  margin-top: -50px; /* Efeito de sobreposição */
+  margin-top: -50px; 
 }
 
 .grid-layout {
@@ -185,4 +185,109 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+
+/* PÁGINA DE DOCENTES */
+
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.header-section h1 {
+  color: var(--text-dark);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Grelha (Grid) */
+.docentes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Cartão Individual */
+.docente-card {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.docente-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
+}
+
+/* Avatar (Circulo com ícone) */
+.avatar {
+  width: 80px;
+  height: 80px;
+  background-color: #eff6ff; /* Azul muito claro */
+  color: var(--primary-color);
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Texto do Cartão */
+.docente-card h3 {
+  margin: 0 0 0.5rem;
+  color: var(--text-dark);
+  font-size: 1.1rem;
+}
+
+.email {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* Badge  */
+.badge {
+  display: inline-block;
+  background-color: #f1f5f9;
+  color: #475569;
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Loading e Erros */
+.loading-state, .empty-state {
+  text-align: center;
+  color: var(--text-soft);
+  padding: 3rem;
+}
+
+.error-message {
+  text-align: center;
+  color: #ef4444;
+  padding: 2rem;
+  background: #fef2f2;
+  border-radius: 8px;
 }
