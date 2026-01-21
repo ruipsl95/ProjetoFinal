@@ -13,6 +13,9 @@ app.use(express.json({ extended: false }));
 app.use(cors());
 
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/docentes', require('./routes/docentes'));
+app.use('/api/alunos', require('./routes/alunos'));
+app.use('/api/propostas', require('./routes/propostas'));
 
 const PORT = process.env.PORT || 5001; 
 

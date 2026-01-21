@@ -8,10 +8,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// ------------------------------------------------------------------
-// ROTA 1: LOGIN (Pública)
+
 // POST api/auth/login
-// ------------------------------------------------------------------
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -49,13 +47,11 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// ------------------------------------------------------------------
-// ROTA 2: OBTER DADOS DO UTILIZADOR 
+
 // GET api/auth/me
-// ------------------------------------------------------------------
 router.get('/me', auth, async (req, res) => {
     try {
-        // Vai buscar o docente pelo ID (que veio do Token), mas não envia a password
+        // Vai buscar o docente pelo ID (que veio do Token), mas não evia a password
         const docente = await Docente.findById(req.user.id).select('-password');
         res.json(docente);
     } catch (err) {
