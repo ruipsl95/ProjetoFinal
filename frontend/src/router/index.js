@@ -6,6 +6,8 @@ import LoginView from '../views/LoginView.vue'
 import DashboardView from '../views/DashboardView.vue'
 import MinhasPropostas from '../views/MinhasPropostas.vue'
 import DocentesView from '../views/DocentesView.vue'
+import CriarPropostaView from '../views/CriarPropostaView.vue'
+import EditarPropostaView from '../views/EditarPropostaView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +34,16 @@ const router = createRouter({
       component: MinhasPropostas,
       meta: { requiresAuth: true }
     }, 
+    {
+      path: '/propostas/criar',
+      name: 'criar-proposta',
+      component: CriarPropostaView
+    },
+    {
+  path: '/propostas/editar/:id',
+  name: 'editar-proposta',
+  component: EditarPropostaView
+},
     {
   path: '/docentes',
   name: 'docentes',
