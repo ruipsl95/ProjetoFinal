@@ -1,0 +1,31 @@
+
+
+.header-flex { display: flex; justify-content: space-between; align-items: center; }
+.btn-logout { background: #ef4444; color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer; }
+
+/* PAINEL DE CRIAÇÃO */
+.admin-panel {
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 2rem;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  align-items: end;
+}
+.btn-primary { height: 42px; }
+
+/* TABELA */
+.docentes-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.docentes-table th, .docentes-table td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.docentes-table th { background-color: #f1f5f9; color: #475569; font-weight: 600; }
+.btn-delete { background: none; border: none; cursor: pointer; font-size: 1.2rem; }
+.btn-delete:hover { transform: scale(1.1); }
