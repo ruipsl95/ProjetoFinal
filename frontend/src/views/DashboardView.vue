@@ -88,7 +88,7 @@ onMounted(async () => {
             <span class="btn-icon">📋</span>
             <div>
               <strong>Gerir Minhas Propostas</strong>
-              <small>Ver lista, editar e aceitar alunos</small>
+              <small>Ver lista, editar e remover propostas</small>
             </div>
           </button>
 
@@ -99,80 +99,4 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped>
-/* GRID PRINCIPAL */
-.dashboard-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/* CARDS DE ESTATÍSTICA */
-.stats-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.stat-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  border: 1px solid #e2e8f0;
-  transition: transform 0.2s;
-}
-
-.stat-card:hover { transform: translateY(-3px); }
-
-.stat-card .icon { font-size: 2rem; }
-.stat-card h3 { margin: 0; font-size: 2rem; font-weight: 700; color: #1e293b; }
-.stat-card p { margin: 0; color: #64748b; font-size: 0.9rem; }
-
-/* Cores dos Cards */
-.stat-card.blue { border-left: 5px solid #3b82f6; }
-.stat-card.green { border-left: 5px solid #10b981; }
-
-/* BOTÕES DE AÇÃO */
-.actions-section h2 { margin-bottom: 1rem; color: #334155; font-size: 1.2rem; }
-
-.buttons-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-}
-
-.action-btn {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.5rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.2s;
-  background: white;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-}
-
-.action-btn:hover {
-  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-  border-color: #cbd5e1;
-}
-
-.action-btn strong { display: block; font-size: 1.1rem; margin-bottom: 2px; }
-.action-btn small { color: #64748b; font-weight: normal; }
-.btn-icon { font-size: 1.5rem; }
-
-/* Variações de Botão */
-.action-btn.primary { background-color: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
-.action-btn.primary:hover { background-color: #dbeafe; }
-
-.action-btn.secondary { background-color: #f0fdf4; border-color: #bbf7d0; color: #166534; }
-.action-btn.secondary:hover { background-color: #dcfce7; }
-</style>
+<style scoped src="@/assets/dashboard.css"></style>

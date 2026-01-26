@@ -8,6 +8,7 @@ import MinhasPropostas from '../views/MinhasPropostas.vue'
 import DocentesView from '../views/DocentesView.vue'
 import CriarPropostaView from '../views/CriarPropostaView.vue'
 import EditarPropostaView from '../views/EditarPropostaView.vue'
+import AdminDocentesView from '../views/AdminDocentesView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,10 +18,20 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
-    {
+   {
       path: '/login',
       name: 'login',
-      component: LoginView
+      component: LoginView,
+      
+      beforeEnter: (to, from, next) => {
+        if (localStorage.getItem('token')) {
+          const role = localStorage.getItem('role');
+          if (role === 'admin') next('/admin/docentes');
+          else next('/dashboard');
+        } else {
+          next();
+        }
+      }
     },
     {
       path: '/dashboard',
@@ -32,7 +43,14 @@ const router = createRouter({
       path: '/propostas',
       name: 'propostas',
       component: MinhasPropostas,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true }, 
+      beforeEnter: (to, from, next) => {
+        if (localStorage.getItem('token')) {
+          const role = localStorage.getItem('role');
+          if (role === 'admin') next('/admin/docentes');
+          else next();
+        } 
+      }
     }, 
     {
       path: '/propostas/criar',
@@ -48,6 +66,20 @@ const router = createRouter({
   path: '/docentes',
   name: 'docentes',
   component: DocentesView
+}, 
+{
+  path: '/admin/docentes',
+  name: 'admin-docentes',
+  component: AdminDocentesView,
+  beforeEnter: (to, from, next) => {
+    const role = localStorage.getItem('role');
+    if (role === 'admin') {
+      next();
+    } else {
+      alert("Acesso restrito a Administradores.");
+      next('/login'); 
+    }
+  }
 }
   ]
 })

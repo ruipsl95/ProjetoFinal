@@ -4,56 +4,57 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth');
 const Docente = require('../models/Docente');
-const dotenv = require('dotenv');
+const Admin = require('../models/Admin'); 
 
-dotenv.config();
-
-
-// POST api/auth/login
-router.post('/login', async (req, res) => {
+// ROTA DE LOGIN (POST /api/auth)
+router.post('/', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Verifica se o utilizador existe
-        let docente = await Docente.findOne({ email });
-        if (!docente) {
-            return res.status(400).json({ msg: 'Credenciais inválidas' });
+        let user = null;
+        let role = '';
+
+        // Tentar encontrar como Docente
+        user = await Docente.findOne({ email });
+        if (user) {
+            role = 'docente';
+        } else {
+            // Se não for docente, tentar encontrar como Admin
+            user = await Admin.findOne({ email });
+            if (user) {
+                role = 'admin';
+            }
         }
 
-        // Compara a password
-        const isMatch = await bcrypt.compare(password, docente.password);
+        // Se não encontrou em lado nenhum
+        if (!user) {
+            return res.status(400).json({ msg: 'Credenciais Inválidas' });
+        }
+
+        // Verificar a Password
+        const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ msg: 'Credenciais inválidas' });
+            return res.status(400).json({ msg: 'Credenciais Inválidas' });
         }
 
-        // Gera o token
+        // Gerar Token 
         const payload = {
-            user: { id: docente.id }
+            user: {
+                id: user.id,
+                role: role 
+            }
         };
 
         jwt.sign(
             payload,
-            process.env.JWT_SECRET,
-            { expiresIn: '5h' }, // O login dura 5 horas
+            process.env.JWT_SECRET || 'segredo',
+            { expiresIn: '5h' },
             (err, token) => {
                 if (err) throw err;
-                res.json({ token }); // Envia o token para o Frontend
+                res.json({ token, role }); // Envia o role para o frontend guardar
             }
         );
 
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Erro no servidor');
-    }
-});
-
-
-// GET api/auth/me
-router.get('/me', auth, async (req, res) => {
-    try {
-        // Vai buscar o docente pelo ID (que veio do Token), mas não evia a password
-        const docente = await Docente.findById(req.user.id).select('-password');
-        res.json(docente);
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Erro no servidor');
