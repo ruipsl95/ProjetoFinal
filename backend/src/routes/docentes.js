@@ -8,7 +8,7 @@ const Docente = require('../models/Docente');
 const Proposta = require('../models/Proposta'); 
 
 // LISTAR DOCENTES
-router.get('/', [auth, admin], async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const docentes = await Docente.find().select('-password').sort({ nome: 1 });
         res.json(docentes);
